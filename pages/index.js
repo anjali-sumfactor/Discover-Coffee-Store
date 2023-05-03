@@ -1,7 +1,11 @@
 import Head from 'next/head';
-import styles from '@/styles/Home.module.css';
-import { Banner } from '@/components/banner';
+
 import Image from "next/image";
+import { Banner } from '@/components/banner';
+import { Card } from '@/components/card';
+import coffeeStores from '../data/coffee-stores.json';
+
+import styles from '@/styles/Home.module.css';
 
 export default function Home() {
   const handleOnBannerBtnClick = () => {
@@ -19,6 +23,13 @@ export default function Home() {
       <main className={styles.main}>
         <Banner buttonText="View stores nearby" handleOnClick={handleOnBannerBtnClick} />
         <Image className={styles.heroImage} src="/static/hero-image.png" width={700} height={400}></Image>
+        <div className={styles.cardLayout}>
+          {coffeeStores.map(coffeeStore => {
+            return (
+              <Card name={coffeeStore.name} imageUrl={coffeeStore.imgUrl} href="/coffee-store/darkhorse-coffee" className={styles.card} />
+            )
+          })}
+        </div>
       </main>
     </div>
   )
