@@ -38,8 +38,8 @@ export default function CoffeeStore(props) {
                 coffee store page {router.query.id}
                 <Link href="/">Back to home</Link>
                 <Link href="/coffee-store/dynamic">Go to page dynamic</Link>
-                <p>{props.coffeeStore.address}</p>
-                <p>{props.coffeeStore.name}</p>
+                {/* <p>{props.coffeeStore.address}</p>
+                <p>{props.coffeeStore.name}</p> */}
             </div>
         </>
     );

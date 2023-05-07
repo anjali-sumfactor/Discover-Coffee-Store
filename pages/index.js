@@ -2,18 +2,18 @@ import Head from 'next/head';
 
 import Image from "next/image";
 import { Banner } from '@/components/banner';
-import { Card } from '@/components/card';
+import { Card } from './components/card';
 import coffeeStoresData from '../data/coffee-stores.json';
 
 import styles from '@/styles/Home.module.css';
 
-export async function getStaticProps(context) {
-  return {
-    props: {
-      coffeeStores:coffeeStoresData,
-    },
-  }
-}
+// export async function getStaticProps(context) {
+//   return {
+//     props: {
+//       coffeeStores:coffeeStoresData,
+//     },
+//   }
+// }
 
 export default function Home(props) {
   console.log("props", props);
