@@ -2,14 +2,13 @@ import Link from "next/link";
 import Image from "next/image";
 
 import styles from './card.module.css';
-import cls from 'classname';
 
 export function Card(props) {
     return (
         <>
             <Link href={props.href}>
                 <div className={styles.cardLink}>
-                    <div className={cls("glass", styles.container)}>
+                    <div className={styles.container}>
                         <div className={styles.cardHeaderWrapper}>
                             <h2 className={styles.cardHeader}>{props.name}</h2>
                         </div>

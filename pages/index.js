@@ -1,19 +1,19 @@
 import Head from 'next/head';
 
 import Image from "next/image";
-import { Banner } from '@/components/banner';
-import { Card } from './components/card';
+import { Banner } from '../components/banner';
+import { Card } from '../components/card';
 import coffeeStoresData from '../data/coffee-stores.json';
 
 import styles from '@/styles/Home.module.css';
 
-// export async function getStaticProps(context) {
-//   return {
-//     props: {
-//       coffeeStores:coffeeStoresData,
-//     },
-//   }
-// }
+export async function getStaticProps() {
+  return {
+    props: {
+      coffeeStores: coffeeStoresData,
+    },
+  }
+}
 
 export default function Home(props) {
   console.log("props", props);
@@ -41,7 +41,7 @@ export default function Home(props) {
               {props.coffeeStores.map(coffeeStore => {
                 return (
                   <Card key={coffeeStore.id}
-                    name={coffeeStore.name} imageUrl={coffeeStore.imgUrl} href="/coffee-store/darkhorse-coffee" className={styles.card} />
+                    name={coffeeStore.name} imageUrl={coffeeStore.imgUrl} href={`/coffee-store/${coffeeStore.id}`} className={styles.card} />
                 )
               })}
             </div>
