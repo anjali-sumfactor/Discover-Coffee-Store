@@ -87,7 +87,7 @@
   line-height: 2.5rem;
   padding-bottom: 2rem;
   margin-top: 2rem;
-  color: var(--text-white-100);
+  color: rgb(134, 134, 134);
 }
 
 .sectionWrapper {

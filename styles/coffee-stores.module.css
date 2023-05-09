@@ -48,7 +48,7 @@
 }
 
 .name {
-    color: var(--text-white-100);
+    color: rgb(160, 160, 160);
     font-size: 2.25rem
         /* 36px */
     ;
@@ -81,6 +81,7 @@
     height: auto;
     vertical-align: middle;
     border-style: none;
+    height: 360px;
 }
 
 .col2 {
