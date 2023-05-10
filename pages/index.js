@@ -7,11 +7,11 @@ import { Card } from '../components/card';
 
 import styles from '@/styles/Home.module.css';
 import { fetchCoffeeStores } from '@/lib/coffee-store';
+import useTrackLocation from "../hooks/use-track-location";
+import { useEffect } from 'react';
 
 export async function getStaticProps() {
-
   const coffeeStores = await fetchCoffeeStores();
-
   return {
     props: {
       coffeeStores,
@@ -22,8 +22,26 @@ export async function getStaticProps() {
 export default function Home(props) {
   console.log("props", props);
 
+  const { handleTrackLocation, latLong, locationErrorMsg, isFindingLocation } = useTrackLocation();
+
+  console.log({ latLong, locationErrorMsg });
+
+  useEffect(async () => {
+    if (latLong) {
+      try {
+        const fetchedCoffeeStores = await fetchCoffeeStores(latLong);
+        console.log({ fetchedCoffeeStores });
+        //set coffee stores
+      } catch (error) {
+        //set error
+        console.log({ error });
+      }
+    }
+  }, [latLong]);
+
   const handleOnBannerBtnClick = () => {
-    console.log("hi banner button")
+    console.log("hi banner button");
+    handleTrackLocation();
   }
 
   return (
@@ -35,11 +53,13 @@ export default function Home(props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        <Banner buttonText="View stores nearby" handleOnClick={handleOnBannerBtnClick} />
+        <Banner buttonText={isFindingLocation ? "Locating..." : "View stores nearby"} handleOnClick={handleOnBannerBtnClick} />
+        {locationErrorMsg && <p>Something went wrong: {locationErrorMsg}</p>}
         <Image className={styles.heroImage} src="/static/hero-image.png" width={700} height={400} alt="heroImage"></Image>
 
         {
-          props.coffeeStores.length > 0 && <>
+          props.coffeeStores.length > 0 &&
+          <div className={styles.sectionWrapper}>
             <h2 className={styles.heading2}>Toronto stores</h2>
             <div className={styles.cardLayout}>
               {props.coffeeStores.map(coffeeStore => {
@@ -49,7 +69,7 @@ export default function Home(props) {
                 )
               })}
             </div>
-          </>
+          </div>
         }
       </main>
     </div>
