@@ -12,6 +12,7 @@ import { useEffect } from 'react';
 
 export async function getStaticProps() {
   const coffeeStores = await fetchCoffeeStores();
+
   return {
     props: {
       coffeeStores,
@@ -26,18 +27,15 @@ export default function Home(props) {
 
   console.log({ latLong, locationErrorMsg });
 
-  useEffect(async () => {
-    if (latLong) {
-      try {
-        const fetchedCoffeeStores = await fetchCoffeeStores(latLong);
-        console.log({ fetchedCoffeeStores });
-        //set coffee stores
-      } catch (error) {
-        //set error
-        console.log({ error });
+  useEffect(() => {
+    async function setCoffeeStoresByLocation() {
+      if (latLong) {
+        // code
       }
     }
-  }, [latLong]);
+
+    setCoffeeStoresByLocation();
+  }, [latLong])
 
   const handleOnBannerBtnClick = () => {
     console.log("hi banner button");
